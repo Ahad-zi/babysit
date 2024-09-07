@@ -30,14 +30,14 @@ class ChildrenScreen extends StatelessWidget {
           children: [
             _buildChildItem(
               context,
-              imageUrl: 'assets/child/child1.png',
+              imageUrl: 'assets/child1.png',
               name: 'Ahmad',
               color: Colors.blueGrey[300],
             ),
             SizedBox(height: 10.h),
             _buildChildItem(
               context,
-              imageUrl: 'assets/child/child2.png',
+              imageUrl: 'assets/child2.png',
               name: 'Ahad',
               color: Colors.pinkAccent[100],
             ),
