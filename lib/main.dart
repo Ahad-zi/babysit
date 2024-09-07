@@ -1,9 +1,18 @@
-import '../core/app_router.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../core/app_router.dart';
+import '../core/theme/theme_provider.dart';
+import '../core/theme/app_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,20 +20,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ThemeProvider>(context);
+
     return ScreenUtilInit(
-      designSize: const Size(375, 812), //تعديل المقاسات اعتمادا على مرجع مثلا ايفون  
-      minTextAdapt: true, //تحديث قياسات النص تلقائيا 
-      splitScreenMode: true, 
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
           title: 'Baby Care App',
           debugShowCheckedModeBanner: false,
-          initialRoute: Routes.splash,
-          onGenerateRoute: Routes.generateRoute,
-          builder: (context, widget) {
-            ScreenUtil.init(context);
-            return widget!;
-          },
+          theme: themeProvider.isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+          routerConfig: AppRouter.router,
         );
       },
     );

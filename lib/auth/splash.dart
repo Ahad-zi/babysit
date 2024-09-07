@@ -1,6 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../core/app_router.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(Routes.chooseRole);
+      context.goNamed('choose-role'); 
     });
   }
 
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor, 
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen>
             Container(
               width: 100.w,
               height: 4.h,
-              color: Colors.green,
+              color: Theme.of(context).primaryColor, 
             ),
           ],
         ),

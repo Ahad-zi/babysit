@@ -1,8 +1,7 @@
-import '../core/app_router.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:go_router/go_router.dart'; 
 
 class ChooseRoleScreen extends StatelessWidget {
   @override
@@ -26,16 +25,16 @@ class ChooseRoleScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w400,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
                 ),
               ),
               SizedBox(height: 40.h),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed(Routes.signUp, arguments: 'Parent');
+                  context.goNamed('sign-up', queryParameters: {'role': 'Parent'}); 
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[300],
+                  backgroundColor: Theme.of(context).primaryColor,
                   minimumSize: Size(300.w, 50.h),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.r),
@@ -43,17 +42,16 @@ class ChooseRoleScreen extends StatelessWidget {
                 ),
                 child: Text(
                   'Parent',
-                  style: TextStyle(fontSize: 18.sp),
+                  style: TextStyle(fontSize: 18.sp, color:Colors.black), 
                 ),
               ),
               SizedBox(height: 20.h),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed(Routes.signUp, arguments: 'Sitter');
+                  context.goNamed('sign-up', queryParameters: {'role': 'Sitter'});
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[300],
+                  backgroundColor: Theme.of(context).secondaryHeaderColor, 
                   minimumSize: Size(300.w, 50.h),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.r),
@@ -61,7 +59,7 @@ class ChooseRoleScreen extends StatelessWidget {
                 ),
                 child: Text(
                   'I’m a sitter',
-                  style: TextStyle(fontSize: 18.sp),
+                  style: TextStyle(fontSize: 18.sp, color: Colors.black), 
                 ),
               ),
             ],

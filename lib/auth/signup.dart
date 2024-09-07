@@ -1,6 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../core/app_router.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatelessWidget {
   final String role; // To differentiate between Parent and Sitter
@@ -13,15 +14,13 @@ class SignUpScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, size: 24.sp),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.pop(),
         ),
         title: Text(
           '$role Sign Up',
-          style: TextStyle(fontSize: 24.sp), 
+          style: TextStyle(fontSize: 24.sp, color: Theme.of(context).appBarTheme.titleTextStyle?.color), // Dynamic color
         ),
         centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
       ),
       body: SafeArea(
         child: Padding(
@@ -33,20 +32,20 @@ class SignUpScreen extends StatelessWidget {
               Center(
                 child: Text(
                   'Already have an account? ',
-                  style: TextStyle(fontSize: 14.sp), 
+                  style: TextStyle(fontSize: 14.sp, color: Theme.of(context).textTheme.bodyMedium?.color), // Dynamic color
                 ),
               ),
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(Routes.login, arguments: role);
+                    context.goNamed('login', queryParameters: {'role': 'Parent'}); // Updated navigation
                   },
                   child: Text(
                     'Sign in',
                     style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.blue),  
+                      fontSize: 14.sp,
+                      color: Theme.of(context).colorScheme.secondary, // Dynamic color
+                    ),
                   ),
                 ),
               ),
@@ -54,7 +53,7 @@ class SignUpScreen extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Full Name',
-                  labelStyle: TextStyle(fontSize: 16.sp),
+                  labelStyle: TextStyle(fontSize: 16.sp, color: Theme.of(context).textTheme.bodyMedium?.color), // Dynamic color
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -62,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(fontSize: 16.sp),
+                  labelStyle: TextStyle(fontSize: 16.sp, color: Theme.of(context).textTheme.bodyMedium?.color), // Dynamic color
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -71,10 +70,9 @@ class SignUpScreen extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(fontSize: 16.sp),
+                  labelStyle: TextStyle(fontSize: 16.sp, color: Theme.of(context).textTheme.bodyMedium?.color), // Dynamic color
                   border: OutlineInputBorder(),
-                  suffixIcon:
-                      Icon(Icons.visibility, size: 20.sp), 
+                  suffixIcon: Icon(Icons.visibility, size: 20.sp, color: Theme.of(context).iconTheme.color), // Dynamic color
                 ),
               ),
               SizedBox(height: 10.h),
@@ -82,10 +80,9 @@ class SignUpScreen extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Confirm Password',
-                  labelStyle: TextStyle(fontSize: 16.sp),
+                  labelStyle: TextStyle(fontSize: 16.sp, color: Theme.of(context).textTheme.bodyMedium?.color), // Dynamic color
                   border: OutlineInputBorder(),
-                  suffixIcon:
-                      Icon(Icons.visibility, size: 20.sp), 
+                  suffixIcon: Icon(Icons.visibility, size: 20.sp, color: Theme.of(context).iconTheme.color), // Dynamic color
                 ),
               ),
               SizedBox(height: 10.h),
@@ -98,7 +95,7 @@ class SignUpScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'I agree to Terms of Use and Privacy Policy',
-                      style: TextStyle(fontSize: 12.sp), 
+                      style: TextStyle(fontSize: 12.sp, color: Theme.of(context).textTheme.bodySmall?.color), // Dynamic color
                     ),
                   ),
                 ],
@@ -107,18 +104,18 @@ class SignUpScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
+                    context.goNamed('home'); // Updated navigation
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[300],
-                    minimumSize: Size(300.w, 50.h), 
+                    backgroundColor: Theme.of(context).primaryColor, // Dynamic color
+                    minimumSize: Size(300.w, 50.h),
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(30.r), 
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                   ),
                   child: Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18.sp), 
+                    style: TextStyle(fontSize: 18.sp, color: Theme.of(context).colorScheme.onPrimary), // Dynamic text color
                   ),
                 ),
               ),
